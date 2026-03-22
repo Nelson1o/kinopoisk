@@ -1,8 +1,8 @@
 import { createBrowserRouter } from "react-router";
 import { Layout } from "@/pages/layout";
 import { NotFound } from "@/pages/not-found";
-import { MovieList } from "@/pages/movie-list";
 import { MoviePage } from "@/pages/movie-page";
+import { Favorites } from "@/pages/favorites";
 
 export const router = createBrowserRouter([
   {
@@ -11,12 +11,12 @@ export const router = createBrowserRouter([
     errorElement: <NotFound />,
     children: [
       {
-        path: "movies",
-        element: <MovieList />,
-      },
-      {
         path: "movies/:id",
         element: <MoviePage />,
+      },
+      {
+        path: "favorites",
+        element: <Favorites />,
       },
     ],
   },

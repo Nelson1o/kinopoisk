@@ -1,0 +1,17 @@
+.favorites {
+  padding: 10px;
+}
+
+.title {
+  margin-block: 10px 20px;
+  text-align: center;
+  font-weight: 600;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 40px;
+  padding-bottom: 40px;
+}

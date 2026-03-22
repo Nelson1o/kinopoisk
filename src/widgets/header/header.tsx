@@ -51,6 +51,7 @@ export const Header = ({ value, onChange }: HeaderProps) => {
               height={20}
             />
           </div>
+          <Link to="/favorites">Избранное</Link>
         </div>
       </div>
     </header>
