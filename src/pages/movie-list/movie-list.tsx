@@ -2,14 +2,19 @@ import { MovieCard } from "@/widgets/movie-card";
 import { useIntesection } from "@/shared/hooks";
 
 import styles from "./styles.module.scss";
-import type { MovieDto } from "@/shared/types";
+import type { Movie, MovieDto } from "@/shared/types";
 
 type MovieListProps = {
   list?: MovieDto[];
+  filterList?: Movie[];
   fetchNextPage: () => void;
 };
 
-export const MovieList = ({ list, fetchNextPage }: MovieListProps) => {
+export const MovieList = ({
+  list,
+  filterList,
+  fetchNextPage,
+}: MovieListProps) => {
   const cursorRef = useIntesection(() => {
     fetchNextPage();
   });
@@ -17,9 +22,15 @@ export const MovieList = ({ list, fetchNextPage }: MovieListProps) => {
   return (
     <section className={styles.list}>
       <div className={styles.wrapper}>
-        {list?.map((page) =>
-          page.docs.map((movie) => <MovieCard key={movie.id} movie={movie} />)
-        )}
+        {filterList !== undefined
+          ? filterList.map((movie) => (
+              <MovieCard key={movie.id} movie={movie} />
+            ))
+          : list?.map((page) =>
+              page.docs.map((movie) => (
+                <MovieCard key={movie.id} movie={movie} />
+              ))
+            )}
       </div>
       <div ref={cursorRef}></div>
     </section>

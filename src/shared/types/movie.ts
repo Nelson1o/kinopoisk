@@ -67,3 +67,10 @@ export type MovieListDto = {
   pageParams: number[];
   pages: MovieListData[];
 };
+
+export type MovieFilter = {
+  docs: Movie[];
+  data: {
+    docs: Movie[];
+  };
+};
