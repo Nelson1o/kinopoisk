@@ -22,8 +22,6 @@ export const Layout = () => {
   const [selectYear, setSelectYear] = useState<SingleValue<Option>>(null);
   const [selectRating, setSelectRating] = useState<SingleValue<Option>>(null);
 
-  console.log({ selectGenre, selectYear, selectRating });
-
   const handleChangeGenre = (option: SingleValue<Option>) => {
     setSelectGenre(option);
   };

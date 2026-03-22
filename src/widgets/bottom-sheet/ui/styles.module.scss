@@ -1,0 +1,64 @@
+.container {
+  overflow-x: auto;
+  padding: 1.5rem;
+  font-family: sans-serif;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+
+  thead {
+    background-color: #f9fafb;
+
+    th {
+      padding: 1rem 1.5rem;
+      text-align: left;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: #6b7280;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      border-bottom: 1px solid #e5e7eb;
+
+      &.highlight {
+        color: #2563eb;
+      }
+    }
+  }
+
+  tbody {
+    tr {
+      transition: background-color 0.2s;
+      border-bottom: 1px solid #e5e7eb;
+
+      &:hover {
+        background-color: #fefce8;
+      }
+
+      &:last-child {
+        border-bottom: none;
+      }
+    }
+
+    td {
+      padding: 1rem 1.5rem;
+      color: #4b5563;
+      font-size: 0.9rem;
+
+      &.featureName {
+        font-weight: 600;
+        color: #111827;
+      }
+
+      &.proValue {
+        font-weight: 700;
+        color: #111827;
+      }
+    }
+  }
+}

@@ -1,11 +1,11 @@
-import { type ChangeEvent } from "react";
+import { useState, type ChangeEvent } from "react";
 import { Link } from "react-router";
 
 import lightLogo from "@/shared/assets/icons/logo.svg";
-// import filterLogo from "@/shared/assets/icons/icon-filter.svg";
 import seacrhLogo from "@/shared/assets/icons/icon-search_black.svg";
 
 import styles from "./styles.module.scss";
+import { BottomSheet } from "../bottom-sheet";
 
 type HeaderProps = {
   value: string;
@@ -13,7 +13,7 @@ type HeaderProps = {
 };
 
 export const Header = ({ value, onChange }: HeaderProps) => {
-  // const [isOpenFilter, setIsOpenFilter] = useState(true);
+  const [open, setOpen] = useState(false);
 
   return (
     <header className={styles.header}>
@@ -35,14 +35,6 @@ export const Header = ({ value, onChange }: HeaderProps) => {
               value={value}
               onChange={onChange}
             />
-            {/* <img
-              className={styles.filterLogo}
-              src={filterLogo}
-              alt="filter logo"
-              width={20}
-              height={20}
-              onClick={() => setIsOpenFilter((prev) => !prev)}
-            /> */}
             <img
               className={styles.seacrhLogo}
               src={seacrhLogo}
@@ -51,7 +43,13 @@ export const Header = ({ value, onChange }: HeaderProps) => {
               height={20}
             />
           </div>
-          <Link to="/favorites">Избранное</Link>
+          <Link to="/favorites" className={styles.favorites}>
+            Избранное
+          </Link>
+          <div className={styles.compare} onClick={() => setOpen(true)}>
+            Сравнение
+          </div>
+          <BottomSheet isOpen={open} onClose={setOpen} />
         </div>
       </div>
     </header>

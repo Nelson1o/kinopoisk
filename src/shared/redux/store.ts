@@ -1,11 +1,13 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { favoritesSlice } from "./favoritesSlice";
 import { loadState, saveState } from "../hooks";
+import { compareSlice } from "./compareSlice";
 
 const persistedState = loadState();
 
 const rootReducer = combineReducers({
   favorites: favoritesSlice.reducer,
+  compare: compareSlice.reducer,
 });
 
 export const store = configureStore({
@@ -16,6 +18,7 @@ export const store = configureStore({
 store.subscribe(() => {
   saveState({
     favorites: store.getState().favorites,
+    compare: store.getState().compare,
   });
 });
 

@@ -1,8 +1,8 @@
+import { MovieCard } from "@/widgets/movie-card";
 import { useAppSelector } from "@/shared/redux/hooks";
+import { favoritesSlice } from "@/shared/redux/favoritesSlice";
 
 import styles from "./styles.module.scss";
-import { MovieCard } from "@/widgets/movie-card";
-import { favoritesSlice } from "@/shared/redux/favoritesSlice";
 
 export const Favorites = () => {
   const favoritesMovie = useAppSelector(favoritesSlice.selectors.selectMovies);

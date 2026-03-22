@@ -2,7 +2,7 @@ import { format, parseISO } from "date-fns";
 import { ru } from "date-fns/locale";
 
 import { FieldValue } from "../field-value";
-import { convertArrayToString } from "../../lib";
+import { convertArrayToString } from "@/shared/lib";
 import type { Movie } from "@/shared/types";
 
 import styles from "./styles.module.scss";

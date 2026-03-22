@@ -7,6 +7,7 @@ import styles from "./styles.module.scss";
 import { useAppDispatch } from "@/shared/redux/hooks";
 import { favoritesSlice } from "@/shared/redux/favoritesSlice";
 import { Modal } from "@/shared/ui/modal";
+import { compareSlice } from "@/shared/redux/compareSlice";
 
 type MovieCard = {
   movie: Movie;
@@ -33,31 +34,48 @@ export const MovieCard = ({ movie }: MovieCard) => {
     setIsOpen(true);
   };
 
+  const handleAddMovieToCompare = (event: MouseEvent<HTMLDivElement>) => {
+    event.stopPropagation();
+    dispatch(compareSlice.actions.addMovie(movie));
+  };
+
   return (
     <>
       <div className={styles.card} onClick={handleNavigate}>
-        {movie.poster?.previewUrl ? (
-          <img
-            src={movie.poster?.previewUrl}
-            alt="movie poster"
-            className={styles.poster}
-            width={150}
-            height={200}
-          />
-        ) : (
-          <div className={styles.skeleton}></div>
-        )}
-        <div className={styles.title}>{movie.name}</div>
-        <div className={styles.year}>Год выпуска: {movie.year}</div>
-        <div className={styles.rating}>Рейтинг: {movie.rating.imdb}</div>
-        {location.pathname !== "/favorites" && (
+        <div className={styles.info}>
+          {movie.poster?.previewUrl ? (
+            <img
+              src={movie.poster?.previewUrl}
+              alt="movie poster"
+              className={styles.poster}
+              width={150}
+              height={200}
+            />
+          ) : (
+            <div className={styles.skeleton}></div>
+          )}
+          <div className={styles.title}>{movie.name}</div>
+          <div className={styles.year}>Год выпуска: {movie.year}</div>
+          <div className={styles.rating}>Рейтинг: {movie.rating.imdb}</div>
+        </div>
+        <div className={styles.group}>
+          {location.pathname !== "/favorites" && (
+            <div
+              className={styles.favorites}
+              onClick={(e: MouseEvent<HTMLDivElement>) => handleAddFavoites(e)}
+            >
+              Добавить в избранное
+            </div>
+          )}
           <div
             className={styles.favorites}
-            onClick={(e: MouseEvent<HTMLDivElement>) => handleAddFavoites(e)}
+            onClick={(e: MouseEvent<HTMLDivElement>) =>
+              handleAddMovieToCompare(e)
+            }
           >
-            Добавить в избранное
+            Добавить для сравнения
           </div>
-        )}
+        </div>
       </div>
       <Modal active={isOpen} setActive={setIsOpen} setFavorite={setFavorite} />
     </>
