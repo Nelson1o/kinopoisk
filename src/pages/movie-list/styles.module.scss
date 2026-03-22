@@ -1,0 +1,13 @@
+.list {
+  padding: 40px;
+  background-color: var(--color-white);
+  height: calc(100vh - var(--header-height));
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 40px;
+  padding-bottom: 40px;
+}
