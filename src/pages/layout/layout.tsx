@@ -1,16 +1,16 @@
 import { useState, type ChangeEvent } from "react";
 import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
 import { Outlet, useLocation } from "react-router";
+import type { SingleValue } from "react-select";
 
 import { MovieList } from "../movie-list";
 import { Header } from "@/widgets/header";
 import { Filters } from "@/features/filters";
 import { useDebounce } from "@/shared/hooks";
-
-import styles from "./styles.module.scss";
 import { MovieListApi } from "@/shared/api/api";
 import type { Option } from "@/shared/types";
-import type { SingleValue } from "react-select";
+
+import styles from "./styles.module.scss";
 
 export const Layout = () => {
   const location = useLocation();
@@ -34,7 +34,7 @@ export const Layout = () => {
     setSelectRating(option);
   };
 
-  const { data, fetchNextPage } = useInfiniteQuery({
+  const { data, isLoading, fetchNextPage } = useInfiniteQuery({
     queryKey: ["list", "movies", debouncedSearch],
     queryFn: (meta) =>
       MovieListApi.getMovieList(meta.pageParam, debouncedSearch),
@@ -49,7 +49,7 @@ export const Layout = () => {
     },
   });
 
-  const { data: filterData } = useQuery({
+  const { data: filterData, isLoading: isFilterLoading } = useQuery({
     queryKey: ["list", "movies", selectGenre, selectYear, selectRating],
     queryFn: () =>
       MovieListApi.getMovieWithFilter(
@@ -75,19 +75,27 @@ export const Layout = () => {
         <div className="container">
           {location.pathname === "/" ? (
             <>
-              <Filters
-                genreValue={selectGenre}
-                yearValue={selectYear}
-                ratingValue={selectRating}
-                onChangeGenre={handleChangeGenre}
-                onChangeYear={handleChangeYear}
-                onChangeRating={handleChangeRating}
-              />
-              <MovieList
-                list={data}
-                filterList={filterData}
-                fetchNextPage={fetchNextPage}
-              />
+              {isLoading || isFilterLoading ? (
+                <div className={styles.container}>
+                  <span className={styles.loader}></span>
+                </div>
+              ) : (
+                <>
+                  <Filters
+                    genreValue={selectGenre}
+                    yearValue={selectYear}
+                    ratingValue={selectRating}
+                    onChangeGenre={handleChangeGenre}
+                    onChangeYear={handleChangeYear}
+                    onChangeRating={handleChangeRating}
+                  />
+                  <MovieList
+                    list={data}
+                    filterList={filterData}
+                    fetchNextPage={fetchNextPage}
+                  />
+                </>
+              )}
             </>
           ) : (
             <Outlet />

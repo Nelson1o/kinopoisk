@@ -2,24 +2,24 @@ import { useParams } from "react-router";
 import { useQuery } from "@tanstack/react-query";
 
 import { MovieActors, MovieInfo } from "./ui";
+import { MovieListApi } from "@/shared/api/api";
 
 import styles from "./styles.module.scss";
-import { MovieListApi } from "@/shared/api/api";
 
 export const MoviePage = () => {
   const { id } = useParams();
 
-  const { data, isLoading, isError } = useQuery({
+  const { data, isLoading } = useQuery({
     queryKey: ["movie", id],
     queryFn: () => MovieListApi.getMovieById(id ?? ""),
   });
 
   if (isLoading) {
-    return <div>Loading...</div>;
-  }
-
-  if (isError) {
-    return <div>Error...</div>;
+    return (
+      <div className={styles.container}>
+        <span className={styles.loader}></span>
+      </div>
+    );
   }
 
   return (

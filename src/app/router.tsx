@@ -1,4 +1,5 @@
 import { createBrowserRouter } from "react-router";
+
 import { Layout } from "@/pages/layout";
 import { NotFound } from "@/pages/not-found";
 import { MoviePage } from "@/pages/movie-page";

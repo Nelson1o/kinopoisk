@@ -1,8 +1,9 @@
 import { useState, useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
 
-import styles from "./styles.module.scss";
 import { Table } from "./ui";
+
+import styles from "./styles.module.scss";
 
 export const BottomSheet = ({
   isOpen,
@@ -11,14 +12,8 @@ export const BottomSheet = ({
   isOpen: boolean;
   onClose: (flag: boolean) => void;
 }) => {
-  const [height, setHeight] = useState(0);
+  const [height, setHeight] = useState(() => window.innerHeight / 2);
   const isDragging = useRef(false);
-
-  useEffect(() => {
-    if (isOpen) {
-      setHeight(window.innerHeight / 2);
-    }
-  }, [isOpen]);
 
   const handleStart = () => {
     isDragging.current = true;
@@ -62,7 +57,7 @@ export const BottomSheet = ({
           <div className={styles.handleBar} />
         </div>
         <div className={styles.content}>
-          <h2>Режим сравнения фильмов</h2>
+          <h2 className={styles.title}>Режим сравнения фильмов</h2>
           <Table />
         </div>
       </div>

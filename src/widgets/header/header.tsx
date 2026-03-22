@@ -3,9 +3,9 @@ import { Link } from "react-router";
 
 import lightLogo from "@/shared/assets/icons/logo.svg";
 import seacrhLogo from "@/shared/assets/icons/icon-search_black.svg";
+import { BottomSheet } from "../bottom-sheet";
 
 import styles from "./styles.module.scss";
-import { BottomSheet } from "../bottom-sheet";
 
 type HeaderProps = {
   value: string;

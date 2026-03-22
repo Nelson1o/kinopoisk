@@ -1,73 +1,19 @@
-# React + TypeScript + Vite
+### Поиск информации о фильмах в "Кинопоиске" (VK)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Приложение, построенное на основе API Кинопоиска, поможет быстро найти любой фильм из огромной базы фильмов. Для работы с API необходим ключ доступа!\
 
-Currently, two official plugins are available:
+#### Запуск приложения
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+1. Клонируете репозиторий командой `git clone https://github.com/Nelson1o/kinopoisk.git`
+2. Устанавливаете зависимости при помощи команды `npm i`
+3. Для взаимодействия приложения с [API Кинопоиска](https://api.kinopoisk.dev/documentation).
+4. Запустите приложение командой `npm start`.
 
-## React Compiler
+#### Описание функционала
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+1. Поиск фильмов и сериалов по имени.
+2. Поиск фильмов и сериалов по нескольким фильтрам (год, жанр, возрастной рейтинг).
+3. Реализована бесконечный скролл для просмотра результата.
+4. По клику с карточкой фильма, происходит переход на страницу фильма с его подробным описанием.
+5. Реализована возможность добавить фильм в избранное, с сохранением данных при перезагрузке страницы.
+6. Реализован режим сравнения фильмов по основным характеристикам.

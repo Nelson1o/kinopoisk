@@ -2,12 +2,12 @@ import { useLocation, useNavigate } from "react-router";
 import { useState, type MouseEvent } from "react";
 
 import type { Movie } from "@/shared/types";
-
-import styles from "./styles.module.scss";
 import { useAppDispatch } from "@/shared/redux/hooks";
 import { favoritesSlice } from "@/shared/redux/favoritesSlice";
-import { Modal } from "@/shared/ui/modal";
 import { compareSlice } from "@/shared/redux/compareSlice";
+import { Modal } from "@/shared/ui/modal";
+
+import styles from "./styles.module.scss";
 
 type MovieCard = {
   movie: Movie;

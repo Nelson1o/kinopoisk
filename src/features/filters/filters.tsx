@@ -1,8 +1,9 @@
 import Select, { type SingleValue } from "react-select";
 
-import styles from "./styles.module.scss";
 import { GENRE, RATING, YEAR } from "@/shared/constants";
 import type { Option } from "@/shared/types";
+
+import styles from "./styles.module.scss";
 
 type FiltersProps = {
   genreValue: SingleValue<Option>;

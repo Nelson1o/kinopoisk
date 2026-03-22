@@ -1,8 +1,8 @@
 import { MovieCard } from "@/widgets/movie-card";
 import { useIntesection } from "@/shared/hooks";
+import type { Movie, MovieDto } from "@/shared/types";
 
 import styles from "./styles.module.scss";
-import type { Movie, MovieDto } from "@/shared/types";
 
 type MovieListProps = {
   list?: MovieDto[];

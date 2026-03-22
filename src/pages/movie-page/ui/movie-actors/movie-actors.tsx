@@ -1,4 +1,5 @@
 import type { Actor } from "@/shared/types";
+
 import styles from "./styles.module.scss";
 
 type MovieActorsProps = {
